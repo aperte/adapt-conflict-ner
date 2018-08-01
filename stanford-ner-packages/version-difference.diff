@@ -1,0 +1,31 @@
+diff -r CoreNLP_MOD_6589403f24b38470c157a40d2f75c95ee1b3011a/src/edu/stanford/nlp/ie/NERFeatureFactory.java CoreNLP_NOMOD_6589403f24b38470c157a40d2f75c95ee1b3011a/src/edu/stanford/nlp/ie/NERFeatureFactory.java
+686,692c686
+<       // Modified to lowercase each word,
+<       // not the most efficient placement, but gives no side-effects
+<       // beyond gazetteinfo
+<       this.words = new String[words.length];
+<       for (int i = 0; i < words.length; i++) {
+<           this.words[i] = words[i].toLowerCase();
+<       }
+---
+>       this.words = words;
+717d710
+<           word = word.toLowerCase();
+1313,1315d1305
+<         // Modified to use a temporary lowercased cWord instead
+<         String lc_cWord = cWord.toLowerCase();
+<         
+1317c1307
+<           Collection<String> entries = wordToGazetteEntries.get(lc_cWord);
+---
+>           Collection<String> entries = wordToGazetteEntries.get(cWord);
+1323c1313
+<           Collection<GazetteInfo> infos = wordToGazetteInfos.get(lc_cWord);
+---
+>           Collection<GazetteInfo> infos = wordToGazetteInfos.get(cWord);
+1328,1330c1318
+<                 // Added toLowerCase(), should only be needed for cInfo, as
+<                 // gInfo shold be lowercased at init
+<                 ok &= gInfo.words[gLoc].equals(getWord(cInfo.get(loc + gLoc - gInfo.loc)).toLowerCase());
+---
+>                 ok &= gInfo.words[gLoc].equals(getWord(cInfo.get(loc + gLoc - gInfo.loc)));
